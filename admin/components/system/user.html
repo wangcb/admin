@@ -1,0 +1,370 @@
+﻿<!-- 正文开始 -->
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <!-- 表格工具栏 -->
+            <form class="layui-form toolbar" lay-filter="userTbSearchForm">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <input name="keyword" class="layui-input" placeholder="输入账号、昵称、手机号"/>
+                        </div>
+                    </div>
+                    <!--<div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select name="sex">
+                                <option value="">选择性别</option>
+                                <option value="1">男</option>
+                                <option value="0">女</option>
+                                <option value="2">保密</option>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="layui-inline">&emsp;
+                        <button class="layui-btn icon-btn" lay-filter="userTbSearch" lay-submit>
+                            <i class="layui-icon">&#xe615;</i>搜索
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- 数据表格 -->
+            <table id="userTable" lay-filter="userTable"></table>
+        </div>
+    </div>
+</div>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="userTbBar">
+    {{# if(layui.admin.hasPerm('user/edit')){ }}<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>{{# } }}
+    {{# if(layui.admin.hasPerm('user/delete')){ }}<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>{{# } }}
+	{{# if(layui.admin.hasPerm('user/change')){ }}
+		<a class="layui-btn layui-btn-xs" data-dropdown="#userTbDrop{{d.LAY_INDEX}}" no-shade="true">
+			更多<i class="layui-icon layui-icon-drop" style="font-size: 12px;margin-right: 0;position: relative;top:1px;"></i></a>
+		<!-- 下拉菜单 -->
+		<ul class="dropdown-menu-nav dropdown-bottom-right layui-hide" id="userTbDrop{{d.LAY_INDEX}}">
+			<div class="dropdown-anchor"></div>
+			<li><a lay-event="change"><i class="layui-icon layui-icon-rmb"></i>修改余额</a></li>
+		</ul>
+	{{# } }}
+
+</script>
+<!-- 表格状态列 -->
+<script type="text/html" id="userTbState">
+    {{# if(layui.admin.hasPerm('user/state')){ }}
+    <input type="checkbox" lay-filter="userTbStateCk" value="{{d.id}}" lay-skin="switch"
+           lay-text="正常|锁定" {{d.state==0?'checked':''}} style="display: none;"/>
+    {{# }else{ }}
+        <p>{{d.state==0?'正常':'锁定'}}</p>
+    {{# } }}
+</script>
+<!--修改余额-->
+<script type="text/html" id="roleEditDialog">
+	<form id="roleEditForm" lay-filter="roleEditForm" class="layui-form model-form">
+		<!--主键-->
+		<input name="id" type="hidden"/>
+		<div class="layui-form-item">
+			<label class="layui-form-label"></label>
+			<div class="layui-form-mid layui-word-aux" style="color:#333333;">当前余额：<span id="withdraw"></span></div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label layui-form-required">改变方式:</label>
+			<div class="layui-input-block">
+				<select name="changeType" lay-vertype="tips" lay-verify="required" lay-reqtext="请选择改变方式" required>
+					<option value="">请选择</option>
+					<option value="-">减少</option>
+					<option value="+">增加</option>
+				</select>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label layui-form-required">修改余额:</label>
+			<div class="layui-input-block">
+				<input name="money" placeholder="请输入修改的余额" class="layui-input" lay-verType="tips" lay-verify="required|number|integer" required/>
+			</div>
+		</div>
+		<div class="layui-form-item text-right">
+			<button class="layui-btn" lay-filter="roleEditSubmit" lay-submit>保存</button>
+			<button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+		</div>
+	</form>
+</script>
+<!-- 表单弹窗 -->
+<script type="text/html" id="userEditDialog">
+    <form id="userEditForm" lay-filter="userEditForm" class="layui-form model-form">
+        <input name="id" type="hidden"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">账号:</label>
+            <div class="layui-input-block">
+                <input name="username" placeholder="请输入账号" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">密码:</label>
+            <div class="layui-input-block">
+                <input name="password" placeholder="请输入密码" class="layui-input" />
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">昵称:</label>
+            <div class="layui-input-block">
+                <input name="nickname" placeholder="请输入用户昵称" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <!--<div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">性别:</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="1" title="男" checked/>
+                <input type="radio" name="sex" value="0" title="女"/>
+            </div>
+        </div>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">手机号:</label>
+            <div class="layui-input-block">
+                <input name="mobile" placeholder="请输入手机号" class="layui-input"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">角色:</label>
+            <div class="layui-input-block">
+                <div id="userEditRoleSel"></div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注:</label>
+            <div class="layui-input-block">
+                <input name="remark" placeholder="备注" class="layui-input"/>
+            </div>
+        </div>
+        <div class="layui-form-item text-right">
+            <button class="layui-btn" lay-filter="userEditSubmit" lay-submit>保存</button>
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        </div>
+    </form>
+</script>
+
+<!-- js部分 -->
+<script>
+    layui.use(['layer', 'form', 'table', 'util', 'admin', 'xmSelect','notice','dropdown'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+        var table = layui.table;
+        var util = layui.util;
+        var admin = layui.admin;
+        var xmSelect = layui.xmSelect;
+        var notice = layui.notice;
+		var dropdown = layui.dropdown;
+        var roles = [];
+        form.render('select', 'userTbSearchForm');
+
+        admin.req('/role', function (res) {
+            $.each(res.data.lists,function(i,item){
+                roles.push({'name':item.name,'value':item.id});
+            });
+        });
+		form.verify({
+			integer:[/^\d+$/,'必须为非负整数'],
+		});
+
+        /* 渲染表格 */
+        var insTb = table.render({
+            elem: '#userTable',
+            url: layui.setter.baseServer + '/user',
+            page: true,
+            toolbar: ['<p>',
+                admin.hasPerm('user/create') ? '<button lay-event="add" class="layui-btn layui-btn-sm icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>&nbsp;':'',
+                admin.hasPerm('user/delete') ? '<button lay-event="del" class="layui-btn layui-btn-sm layui-btn-danger icon-btn"><i class="layui-icon">&#xe640;</i>删除</button>':'',
+                '</p>'].join(''),
+            cellMinWidth: 100,
+            parseData: function(res){ //res 即为原始返回的数据
+                return {
+                    "code": res.code==200 ? 0 : res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.data.count, //解析数据长度
+                    "data": res.data.lists //解析数据列表
+                };
+            },
+            cols: [[
+                {type: 'checkbox'},
+                {type: 'numbers'},
+                {field: 'username', title: '账号', sort: true},
+                {field: 'nickname', title: '昵称', sort: true},
+                {field: 'mobile', title: '手机号', sort: true},
+                {
+                    field: 'roleName', title: '角色', templet: function (d) {
+                        return d.roles.map(function (item) {
+                            return '<span class="layui-badge layui-badge-gray">' + item.name + '</span>';
+                        }).join('&nbsp;&nbsp;');
+                    }, sort: true, width: 150
+                },
+                {
+                    field: 'create_time', title: '创建时间', templet: function (d) {
+                        return util.toDateString(d.create_time);
+                    }, sort: true
+                },
+                {field: 'state', title: '状态', templet: '#userTbState', sort: true, width: 100},
+                {title: '操作', toolbar: '#userTbBar', align: 'center', minWidth: 200}
+            ]]
+        });
+
+        /* 表格搜索 */
+        form.on('submit(userTbSearch)', function (data) {
+            insTb.reload({where: data.field, page: {curr: 1}});
+            return false;
+        });
+
+        /* 表格工具条点击事件 */
+        table.on('tool(userTable)', function (obj) {
+            if (obj.event === 'edit') { // 修改
+                showEditModel(obj.data);
+            } else if (obj.event === 'del') { // 删除
+                doDel(obj);
+            } else if (obj.event === 'reset') { // 重置密码
+                resetPsw(obj);
+            }else if(obj.event === 'change'){ //修改余额
+				change(obj.data);
+			}
+        });
+
+        /* 表格头工具栏点击事件 */
+        table.on('toolbar(userTable)', function (obj) {
+            if (obj.event === 'add') { // 添加
+                showEditModel();
+            } else if (obj.event === 'del') { // 删除
+                var checkRows = table.checkStatus('userTable');
+                if (checkRows.data.length === 0) {
+                    layer.msg('请选择要删除的数据', {icon: 2});
+                    return;
+                }
+                var ids = checkRows.data.map(function (d) {
+                    return d.id;
+                });
+                doDel({ids: ids});
+            }
+        });
+
+		/*修改*/
+		function change(mData) {
+			admin.open({
+				type: 1,
+				title: '修改余额',
+				area: ['500px', '400px'],
+				content: $('#roleEditDialog').html(),
+				success: function (layero, dIndex) {
+					form.val('roleEditForm', mData);
+
+					$(':focus').blur();
+					form.render();
+					//console.log(mData);
+					$("#withdraw").html('￥'+mData.credit);
+
+					// 表单提交事件
+					form.on('submit(roleEditSubmit)', function (data) {
+						var loadIndex = layer.load(2);
+						var url = '/user/change'
+						admin.req(url, data.field, function (res) {
+							layer.close(loadIndex);
+							if (200 === res.code) {
+								layer.close(dIndex);
+								insTb.reload({page: {curr: 1}});
+							} else {
+								layer.msg(res.msg, {icon: 2});
+							}
+						},'post');
+						return false;
+					});
+				}
+			});
+		}
+
+        /* 显示表单弹窗 */
+        function showEditModel(mData) {
+            admin.open({
+                type: 1,
+                title: (mData ? '修改' : '添加') + '用户',
+                content: $('#userEditDialog').html(),
+                success: function (layero, dIndex) {
+                    mData && layero.find('[name="username"]').attr('readonly',true);
+                    // 回显表单数据
+                    form.val('userEditForm', mData);
+                    // 表单提交事件
+                    form.on('submit(userEditSubmit)', function (data) {
+                        data.field.roleids = insRoleSel.getValue('valueStr');
+                        var loadIndex = layer.load(2);
+                        admin.req('/user', data.field, function (res) {  // 实际项目这里url可以是mData?'user/update':'user/add'
+                            layer.close(loadIndex);
+                            if (res.code === 200) {
+                                layer.close(dIndex);
+                                layer.msg(res.msg, {icon: 1});
+                                insTb.reload({page: {curr: 1}});
+                            } else {
+                                layer.msg(res.msg, {icon: 2});
+                            }
+                        }, mData ? 'put' : 'post');  // 实际项目可以是mData?'put':'post'
+                        return false;
+                    });
+                    // 渲染多选下拉框
+                    var insRoleSel = xmSelect.render({
+                        el: '#userEditRoleSel',
+                        name: 'userEditRoleSel',
+                        layVerify: 'required',
+                        layVerType: 'tips',
+                        data: roles
+                    });
+                    // 回显选中角色
+                    if (mData && mData.roles) {
+                        insRoleSel.setValue(mData.roles.map(function (item) {
+                            return item.id;
+                        }));
+                    }
+                    // 禁止弹窗出现滚动条
+                    $(layero).children('.layui-layer-content').css('overflow', 'visible');
+                }
+            });
+        }
+
+        /* 删除 */
+        function doDel(obj) {
+            layer.confirm('确定要删除选中数据吗？', {
+                skin: 'layui-layer-admin',
+                shade: .1
+            }, function (i) {
+                layer.close(i);
+                var loadIndex = layer.load(2);
+                admin.req('/user', {
+                    id: obj.data ? obj.data.id  :  obj.ids.join(',')
+                }, function (res) {
+                    layer.close(loadIndex);
+                    if (res.code === 200) {
+                        layer.msg(res.msg, {icon: 1});
+                        insTb.reload({page: {curr: 1}});
+                    } else {
+                        layer.msg(res.msg, {icon: 2});
+                    }
+                }, 'delete');
+            });
+        }
+
+        /* 修改用户状态 */
+        form.on('switch(userTbStateCk)', function (obj) {
+            var loadIndex = layer.load(2);
+            admin.req('/user/state', {
+                id: obj.elem.value,
+                state: obj.elem.checked ? 0 : 1
+            }, function (res) {
+                layer.close(loadIndex);
+                if (res.code === 200) {
+                    notice.msg(res.msg, {icon: 1});
+                } else {
+                    notice.msg(res.msg, {icon: 2});
+                    $(obj.elem).prop('checked', !obj.elem.checked);
+                    form.render('checkbox');
+                }
+            }, 'put');
+        });
+
+    });
+</script>

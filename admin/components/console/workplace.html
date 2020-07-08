@@ -1,0 +1,451 @@
+<tpl/>
+<style>
+    /** 应用快捷块样式 */
+    .console-app-group {
+        display: block;
+        padding: 16px;
+        border-radius: 4px;
+        text-align: center;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .console-app-group .console-app-icon {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        margin-bottom: 6px;
+        display: inline-block;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-size: 32px;
+        color: #69c0ff;
+    }
+
+    .console-app-group:hover {
+        box-shadow: 0 0 15px rgba(0, 0, 0, .08);
+    }
+
+    /** //应用快捷块样式 */
+
+    /** 小组成员 */
+    .console-user-group {
+        position: relative;
+        padding: 10px 0 10px 60px;
+    }
+
+    .console-user-group .console-user-group-head {
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        margin-top: -16px;
+        border-radius: 50%;
+    }
+
+    .console-user-group .layui-badge {
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        margin-top: -10px;
+    }
+
+    .console-user-group .console-user-group-name {
+        line-height: 1.2;
+    }
+
+    .console-user-group .console-user-group-desc {
+        color: #8c8c8c;
+        line-height: 1;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    /** 卡片轮播图样式 */
+    .admin-carousel .layui-carousel-ind {
+        position: absolute;
+        top: -41px;
+        text-align: right;
+    }
+
+    .admin-carousel .layui-carousel-ind ul {
+        background: 0 0;
+    }
+
+    .admin-carousel .layui-carousel-ind li {
+        background-color: #e2e2e2;
+    }
+
+    .admin-carousel .layui-carousel-ind li.layui-this {
+        background-color: #999;
+    }
+
+    /** 广告位轮播图 */
+    .admin-news .layui-carousel-ind {
+        height: 45px;
+    }
+
+    .admin-news a {
+        display: block;
+        line-height: 70px;
+        text-align: center;
+    }
+
+    /** 最新动态时间线 */
+    .layui-timeline-dynamic .layui-timeline-item {
+        padding-bottom: 0;
+    }
+
+    .layui-timeline-dynamic .layui-timeline-item:before {
+        top: 16px;
+    }
+
+    .layui-timeline-dynamic .layui-timeline-axis {
+        width: 9px;
+        height: 9px;
+        left: 1px;
+        top: 7px;
+        background-color: #cbd0db;
+    }
+
+    .layui-timeline-dynamic .layui-timeline-axis.active {
+        background-color: #0c64eb;
+        box-shadow: 0 0 0 2px rgba(12, 100, 235, .3);
+    }
+
+    .dynamic-card-body {
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .dynamic-card-body:hover {
+        overflow-y: auto;
+        padding-right: 9px;
+    }
+
+    /** 优先级徽章 */
+    .layui-badge-priority {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        line-height: 18px;
+        border-width: 2px;
+        font-weight: 600;
+    }
+	.guiderow a{
+		color:#666666 !important;
+	}
+</style>
+<!-- 正文开始 -->
+<div class="layui-fluid ew-console-wrapper">
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" id="data-tab">
+        <ul class="layui-tab-title" style="margin: 0 10px;background:#fff;display: none">
+            <li class="layui-this">支 出 统 计</li>
+            <li>收 入 统 计</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show"><div class="layui-row layui-col-space15">
+                <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            我的余额<a href="javascript:;" id="recharge" class="layui-badge layui-badge-green pull-right">充值</a>
+                        </div>
+                        <div class="layui-card-body">
+                            <p class="lay-big-font"><span style="font-size: 26px;line-height: 1;">¥ </span><span data-field="credit">0.00</span></p>
+                            <p>&nbsp;<span class="pull-right">&nbsp;</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">消费总额</div>
+                        <div class="layui-card-body">
+                            <p class="lay-big-font"><span style="font-size: 26px;line-height: 1;">¥ </span><span data-field="out_total">0.00</span></p>
+                            <p>&nbsp;<span class="pull-right">&nbsp;</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">今日消费</div>
+                        <div class="layui-card-body">
+                            <p class="lay-big-font"><span style="font-size: 26px;line-height: 1;">¥ </span><span data-field="out_today">0.00</span></p>
+                            <p>&nbsp;<span class="pull-right">&nbsp;</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+                    <div class="layui-card">
+                        <div class="layui-card-header">订单数量</div>
+                        <div class="layui-card-body">
+                            <p class="lay-big-font"><span data-field="out_total_order">0</span></p>
+                            <p>&nbsp;<span class="pull-right">&nbsp;</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+            <div class="layui-tab-item"><div class="layui-row layui-col-space15">
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    总收入
+                </div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font"><span style="font-size: 26px;line-height: 1;">¥ </span><span data-field="in_total">0.00</span></p>
+                    <p>&nbsp;<span class="pull-right">&nbsp;</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">今日收入</div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font"><span style="font-size: 26px;line-height: 1;">¥ </span><span data-field="in_today">0.00</span></p>
+                    <p>&nbsp;<span class="pull-right">&nbsp;</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">我的订单</div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font"><span data-field="in_total_order">0</span></p>
+                    <p>&nbsp;<span class="pull-right">&nbsp;</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-xs12 layui-col-sm6 layui-col-md3">
+            <div class="layui-card">
+                <div class="layui-card-header">今日订单</div>
+                <div class="layui-card-body">
+                    <p class="lay-big-font"><span data-field="in_today_order">0</span></p>
+                    <p>&nbsp;<span class="pull-right"></span></p>
+                </div>
+            </div>
+        </div>
+                </div></div>
+        </div>
+    </div>
+
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md8 layui-col-sm6">
+            <div class="layui-card">
+                <div class="layui-card-header">使用手册</div>
+                <div class="layui-card-body dynamic-card-body mini-bar" style="height: 265px;">
+                    <ul class="layui-timeline layui-timeline-dynamic">
+						<!--layui-timeline-axis 后面可加active-->
+						<div id="userGuideView"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4 layui-col-sm6">
+            <div class="layui-card">
+                <div class="layui-card-header">联系方式</div>
+                <div class="layui-card-body">
+                    <table class="layui-table layui-text" >
+                        <colgroup>
+                            <col width="90">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                        <tr>
+                            <td>客服电话</td>
+                            <td>15256565422</td>
+                        </tr>
+                        <tr>
+                            <td>客服QQ</td>
+                            <td><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=914137152&site=qq&menu=yes">
+                                <i class="layui-icon layui-icon-login-qq" style="font-size:22px;color: #666"></i></a></td>
+                        </tr>
+                        <tr>
+                            <td>客服微信</td>
+                            <td>
+                                <img src="assets/images/wxkefu.jpg">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="rechargeDialog">
+    <form  lay-filter="rechargeForm" class="layui-form" style="margin: 14px" onsubmit="return false">
+        <div class="layui-form-item">
+            <label class="layui-form-label layui-form-required">充值金额:</label>
+            <div class="layui-input-block layui-btn-container" id="money-btn">
+                <button type="button" class="layui-btn layui-btn-primary">500</button>
+                <button type="button" class="layui-btn layui-btn-primary">1000</button>
+                <button type="button" class="layui-btn layui-btn-primary">2000</button>
+                <button type="button" class="layui-btn layui-btn-primary">5000</button>
+                <!--<button type="button" class="layui-btn layui-btn-primary">其他</button>-->
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">&nbsp;</label>
+            <div class="layui-input-inline">
+                <input type="number" name="money" required="" lay-verify="required" lay-vertype="tips" placeholder="其他金额" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-word-aux"><button id="other-moeny-btn" type="button" class="layui-btn layui-btn-primary">确认</button></div>
+        </div>
+        <div class="layui-form-item text-center">
+            <div id="payQRCode" class="layui-inline" style="margin-right:0"></div>
+            <p class="notice" style="display: none">打开微信，扫一扫</p>
+        </div>
+        <div class="layui-form-item text-right">
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        </div>
+    </form>
+</script>
+<!--手册列表-->
+<script id="userGuide" type="text/html">
+	{{#  layui.each(d, function(index, item){ }}
+	<li class="layui-timeline-item">
+		<i class="layui-icon layui-timeline-axis"></i>
+		<div class="layui-timeline-content layui-text">
+			<div class="layui-timeline-title guiderow" data-id="{{item.id}}"><a href="javascript:" class="guideBtn">{{item.title}}</a></div>
+		</div>
+	</li>
+	{{#  }); }}
+</script>
+<!--查看-->
+<script type="text/html" id="viewDialog">
+	<style>
+		.view{margin:10px;}
+		.view h1{padding:10px;}
+		.view .content p{margin:5px 0; line-height: 24px;}
+	</style>
+	<div class="layui-card-body view">
+		<h1 class="text-center" data-field="title"></h1>
+		<div style="margin: 14px 0" data-field="remark"></div>
+		<div class="content" data-field="content"></div>
+	</div>
+</script>
+
+<!-- js部分 -->
+<script>
+    layui.use(['layer', 'carousel', 'element','admin','QRCode','notice','laytpl'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var carousel = layui.carousel;
+        var admin = layui.admin;
+        var QRCode = layui.QRCode;
+        var notice = layui.notice;
+		var laytpl = layui.laytpl;
+
+		//使用手册列表
+		admin.req('/news/index',{},function (res) {
+			var data = res.data.lists;
+			laytpl(userGuide.innerHTML).render(data, function (html) {
+				$("#userGuideView").html(html);
+
+			});
+		});
+		//使用手册查看
+		$("#userGuideView").on('click',".guiderow",function(){
+			var id = $(this).data('id');
+			admin.req('/news/views',{id:id},function (res) {
+				admin.open({
+					type: 1,
+					title: '查看详情',
+					area: ['50%', '80%'],
+					content: $('#viewDialog').html(),
+					success: function (layero, dIndex) {
+						$.each(res.data, function (i, item) {
+							layero.find('[data-field="' + i + '"]').html(item);
+						});
+					}
+				});
+			})
+			return false;
+		})
+        function init(){
+            admin.req('/index/index',{},function(res){
+                $.each(res.data,function(i,item){
+                    $('[data-field="'+i+'"]').text(item);
+                });
+                if (res.data.role) $('#data-tab .layui-tab-title').show();
+            });
+        }
+        init();
+
+        /* 充值 */
+        var rechargeIns, interval, bool = false;
+        $('#recharge').click(function(){
+            rechargeIns = admin.open({
+                type: 1,
+                title: '充值',
+                area: '530px',
+                content: $('#rechargeDialog').html(),
+                success: function (layero, dIndex) {
+                    $(document).off('click','#money-btn button');
+                    $(document).off('click','#other-moeny-btn');
+                    $(document).on('click','#money-btn button',function(){
+                        if(!$(this).hasClass('layui-btn-primary')) return;
+                        $(this).removeClass('layui-btn-primary').siblings().addClass('layui-btn-primary');
+                        var money = parseFloat($(this).text()) || '';
+                        $('[name="money"]').val(money);
+                        qrcode();
+                    });
+                    $(document).on('click','#other-moeny-btn',function(){
+                        qrcode();
+                    });
+                },
+                end:function(){
+                    clearInterval(interval);
+                }
+            });
+        });
+
+        function qrcode(){
+            if(bool) return false;
+            bool = true;
+            var money = parseFloat($('[name="money"]').val());
+            if(money > 0){
+                clearInterval(interval);
+                $('.notice').hide();
+                $('#payQRCode').html('<i class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"></i>');
+                admin.req('/order',{money:money,title:'充值',pay_type:0, type:0},function(res1){
+                    admin.req('/pay/wscan/',res1.data,function(res){
+                        $('.notice').show();
+                        $('#payQRCode .layui-icon').remove();
+                        bool = false;
+                        if (res.code == 200){
+                            var qrcode = new QRCode(document.getElementById("payQRCode"), {
+                                text: res.data.code_url,
+                                width: 106,
+                                height: 106,
+                                colorDark: '#000000',
+                                colorLight: '#ffffff',
+                                correctLevel: QRCode.CorrectLevel.H
+                            });
+                            interval = setInterval(function(){
+                                admin.req('/pay/result',{order_no:res1.data.order_no},function(res){
+                                    if (res.code == 200){
+                                        layer.close(rechargeIns);
+                                        notice.msg(res.msg, {
+                                            icon: 1,
+                                            onClosed:function () {
+                                                admin.refresh(location.hash);
+                                            }
+                                        });
+                                    }
+                                });
+                            },2500);
+                        }else{
+                            notice.msg(res.msg, {icon: 2});
+                        }
+                    },'post');
+                },'post');
+            }else{
+                $('.notice').hide();
+                $('#payQRCode').html('');
+            }
+        }
+    });
+</script>

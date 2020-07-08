@@ -1,0 +1,358 @@
+[
+  {
+    "name": "Dashboard",
+    "url": "javascript:;",
+    "icon": "layui-icon layui-icon-home",
+    "subMenus": [
+      {
+        "name": "工作台",
+        "url": "#/console/workplace"
+      },
+      {
+        "name": "控制台",
+        "url": "#/console/console"
+      },
+      {
+        "name": "分析页",
+        "url": "#/console/dashboard"
+      }
+    ]
+  },
+  {
+    "name": "系统管理",
+    "icon": "layui-icon layui-icon-set",
+    "url": "javascript:;",
+    "subMenus": [
+      {
+        "name": "用户管理",
+        "url": "#/system/user"
+      },
+      {
+        "name": "角色管理",
+        "url": "#/system/role"
+      },
+      {
+        "name": "权限管理",
+        "url": "#/system/authorities"
+      },
+      {
+        "name": "字典管理",
+        "url": "#/system/dictionary"
+      },
+      {
+        "name": "机构管理",
+        "url": "#/system/organization"
+      },
+      {
+        "name": "登录日志",
+        "url": "#/system/login-record"
+      }
+    ]
+  },
+  {
+    "name": "模板页面",
+    "icon": "layui-icon layui-icon-template",
+    "url": "javascript:;",
+    "subMenus": [
+      {
+        "name": "表单页",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "基础表单",
+            "url": "#/template/form/form-basic"
+          },
+          {
+            "name": "复杂表单",
+            "url": "#/template/form/form-advance"
+          },
+          {
+            "name": "分步表单",
+            "url": "#/template/form/form-step"
+          }
+        ]
+      },
+      {
+        "name": "表格页",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "数据表格",
+            "url": "#/template/table/table-basic"
+          },
+          {
+            "name": "复杂表格",
+            "url": "#/template/table/table-advance"
+          },
+          {
+            "name": "图片表格",
+            "url": "#/template/table/table-img"
+          },
+          {
+            "name": "卡片列表",
+            "url": "#/template/table/table-card"
+          }
+        ]
+      },
+      {
+        "name": "错误页",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "500",
+            "url": "#/template/error/error-500"
+          },
+          {
+            "name": "404",
+            "url": "#/template/error/error-404"
+          },
+          {
+            "name": "403",
+            "url": "#/template/error/error-403"
+          }
+        ]
+      },
+      {
+        "name": "登录页",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "登录页",
+            "url": "components/template/login/login.html",
+            "target": "_blank"
+          },
+          {
+            "name": "注册页",
+            "url": "components/template/login/reg.html",
+            "target": "_blank"
+          },
+          {
+            "name": "忘记密码",
+            "url": "components/template/login/forget.html",
+            "target": "_blank"
+          }
+        ]
+      },
+      {
+        "name": "个人中心",
+        "url": "#/template/user-info"
+      }
+    ]
+  },
+  {
+    "name": "扩展组件",
+    "icon": "layui-icon layui-icon-component",
+    "url": "javascript:;",
+    "subMenus": [
+      {
+        "name": "常用组件",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "弹窗扩展",
+            "url": "#/plugin/basic/dialog"
+          },
+          {
+            "name": "下拉菜单",
+            "url": "#/plugin/basic/dropdown"
+          },
+          {
+            "name": "消息通知",
+            "url": "#/plugin/basic/notice"
+          },
+          {
+            "name": "标签输入",
+            "url": "#/plugin/basic/tagsInput"
+          },
+          {
+            "name": "级联选择",
+            "url": "#/plugin/basic/cascader"
+          },
+          {
+            "name": "步骤条",
+            "url": "#/plugin/basic/steps"
+          }
+        ]
+      },
+      {
+        "name": "进阶组件",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "打印插件",
+            "url": "#/plugin/advance/printer"
+          },
+          {
+            "name": "分割面板",
+            "url": "#/plugin/advance/split"
+          },
+          {
+            "name": "表单扩展",
+            "url": "#/plugin/advance/formX"
+          },
+          {
+            "name": "表格扩展",
+            "url": "#/plugin/advance/tableX"
+          },
+          {
+            "name": "数据列表",
+            "url": "#/plugin/advance/dataGrid"
+          },
+          {
+            "name": "鼠标右键",
+            "url": "#/plugin/advance/contextMenu"
+          }
+        ]
+      },
+      {
+        "name": "其他组件",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "圆形进度条",
+            "url": "#/plugin/other/circleProgress"
+          },
+          {
+            "name": "富文本编辑",
+            "url": "#/plugin/other/editor"
+          },
+          {
+            "name": "鼠标滚轮",
+            "url": "#/plugin/other/mousewheel"
+          },
+          {
+            "name": "更多组件",
+            "url": "#/plugin/other/other"
+          }
+        ]
+      },
+      {
+        "name": "更多扩展",
+        "url": "#/plugin/more"
+      }
+    ]
+  },
+  {
+    "name": "经典实例",
+    "icon": "layui-icon layui-icon-app",
+    "url": "javascript:;",
+    "subMenus": [
+      {
+        "name": "弹窗实例",
+        "url": "#/example/dialog"
+      },
+      {
+        "name": "课程管理",
+        "url": "#/example/course"
+      },
+      {
+        "name": "排课管理",
+        "url": "#/example/calendar"
+      },
+      {
+        "name": "添加试题",
+        "url": "#/example/question"
+      },
+      {
+        "name": "文件管理",
+        "url": "#/example/file"
+      },
+      {
+        "name": "表格CRUD",
+        "url": "#/example/table-crud"
+      },
+      {
+        "name": "路由传参",
+        "url": "#/example/router-demo"
+      },
+      {
+        "name": "多系统模式",
+        "url": "side-more.html",
+        "target": "_blank"
+      }
+    ]
+  },
+  {
+    "name": "LayUI组件",
+    "icon": "layui-icon layui-icon-release",
+    "url": "javascript:;",
+    "subMenus": [
+      {
+        "name": "组件演示",
+        "url": "#/plugin/other/layui"
+      },
+      {
+        "name": "layui文档",
+        "url": "#/layui/doc",
+        "iframe": "https://www.layui.com/doc/element/button.html#use"
+      },
+      {
+        "name": "layer弹窗",
+        "url": "#/layui/layer",
+        "iframe": "https://layer.layui.com/"
+      },
+      {
+        "name": "laydate日期",
+        "url": "#/layui/laydate",
+        "iframe": "https://www.layui.com/laydate/"
+      }
+    ]
+  },
+  {
+    "name": "多级菜单",
+    "url": "javascript:;",
+    "icon": "layui-icon-unlink",
+    "subMenus": [
+      {
+        "name": "二级菜单",
+        "url": "javascript:;"
+      },
+      {
+        "name": "二级菜单",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "三级菜单",
+            "url": "javascript:;"
+          },
+          {
+            "name": "三级菜单",
+            "url": "javascript:;",
+            "subMenus": [
+              {
+                "name": "四级菜单",
+                "url": "javascript:;"
+              },
+              {
+                "name": "四级菜单",
+                "url": "javascript:;",
+                "subMenus": [
+                  {
+                    "name": "五级菜单",
+                    "url": "javascript:;"
+                  },
+                  {
+                    "name": "百度一下",
+                    "url": "#/baidu",
+                    "iframe": "https://baidu.com"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "一级菜单",
+    "icon": "layui-icon-unlink",
+    "url": "#/baidu2",
+    "iframe": "https://baidu.com"
+  },
+  {
+    "name": "路由传参",
+    "url": "#/example/router-param",
+    "show": false
+  }
+]

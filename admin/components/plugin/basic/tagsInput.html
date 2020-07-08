@@ -1,0 +1,95 @@
+<style>
+    #tagsinputApp .layui-card-body {
+        padding: 45px 15px;
+    }
+</style>
+
+<!-- 正文开始 -->
+<div class="layui-fluid" id="tagsinputApp">
+    <div class="layui-row layui-col-space15">
+
+        <div class="layui-col-xs12 layui-col-sm6">
+            <div class="layui-card">
+                <div class="layui-card-header">输入框样式</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item" style="margin-bottom: 14px;">
+                        <label class="layui-form-label">请输入标签</label>
+                        <div class="layui-input-block" style="max-width: 280px;">
+                            <input id="demoTagsInput1" value="辣妹子,大长腿" class="layui-hide"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-xs12 layui-col-sm6">
+            <div class="layui-card">
+                <div class="layui-card-header">无边框样式</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">请输入标签</label>
+                        <div class="layui-input-block">
+                            <input id="demoTagsInput2" value="辣妹子,大长腿" class="layui-hide"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="layui-row layui-col-space15">
+
+        <div class="layui-col-xs12 layui-col-sm6">
+            <div class="layui-card">
+                <div class="layui-card-header">BackSpace键可删除标签</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item" style="margin-bottom: 14px;">
+                        <label class="layui-form-label">请输入标签</label>
+                        <div class="layui-input-block" style="max-width: 280px;">
+                            <input id="demoTagsInput3" value="辣妹子,大长腿" class="layui-hide"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-col-xs12 layui-col-sm6">
+            <div class="layui-card">
+                <div class="layui-card-header">输入自动提示</div>
+                <div class="layui-card-body">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">请输入标签</label>
+                        <div class="layui-input-block">
+                            <input id="demoTagsInput4" value="辣妹子,大长腿" class="layui-hide"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- js部分 -->
+<script>
+    layui.use(['jquery', 'tagsInput'], function () {
+        var $ = layui.jquery;
+        var tagsInput = layui.tagsInput;
+
+        // 输入框样式
+        $('#demoTagsInput1').tagsInput();
+
+        // 无边框样式
+        $('#demoTagsInput2').tagsInput({skin: 'tagsinput-default'});
+
+        // BackSpace键可删除标签
+        $('#demoTagsInput3').tagsInput({removeWithBackspace: true});
+
+        // 输入列表提示
+        $('#demoTagsInput4').tagsInput({
+            skin: 'tagsinput-default',
+            autocomplete_url: 'json/tagsInput.json'
+        });
+
+    });
+</script>

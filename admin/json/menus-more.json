@@ -1,0 +1,140 @@
+[
+  {
+    "id": "xt1",
+    "name": "系统一",
+    "subMenus": [
+      {
+        "name": "Dashboard",
+        "url": "javascript:;",
+        "icon": "layui-icon layui-icon-home",
+        "subMenus": [
+          {
+            "name": "控制台",
+            "url": "#/console/console"
+          },
+          {
+            "name": "工作台",
+            "url": "#/console/workplace"
+          },
+          {
+            "name": "分析页",
+            "url": "#/console/dashboard"
+          }
+        ]
+      },
+      {
+        "name": "系统管理",
+        "icon": "layui-icon layui-icon-set",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "用户管理",
+            "url": "#/system/user"
+          },
+          {
+            "name": "角色管理",
+            "url": "#/system/role"
+          },
+          {
+            "name": "权限管理",
+            "url": "#/system/authorities"
+          },
+          {
+            "name": "登录日志",
+            "url": "#/system/login-record"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xt2",
+    "name": "系统一",
+    "subMenus": [
+      {
+        "name": "模板页面",
+        "icon": "layui-icon layui-icon-template",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "表单页",
+            "url": "javascript:;",
+            "subMenus": [
+              {
+                "name": "基础表单",
+                "url": "#/template/form/form-basic"
+              },
+              {
+                "name": "复杂表单",
+                "url": "#/template/form/form-advance"
+              },
+              {
+                "name": "分步表单",
+                "url": "#/template/form/form-step"
+              }
+            ]
+          },
+          {
+            "name": "表格页",
+            "url": "javascript:;",
+            "subMenus": [
+              {
+                "name": "数据表格",
+                "url": "#/template/table/table-basic"
+              },
+              {
+                "name": "复杂查询",
+                "url": "#/template/table/table-advance"
+              },
+              {
+                "name": "表格缩略图",
+                "url": "#/template/table/table-img"
+              }
+            ]
+          },
+          {
+            "name": "错误页",
+            "url": "javascript:;",
+            "subMenus": [
+              {
+                "name": "500",
+                "url": "#/template/error/error-500"
+              },
+              {
+                "name": "404",
+                "url": "#/template/error/error-404"
+              },
+              {
+                "name": "403",
+                "url": "#/template/error/error-403"
+              }
+            ]
+          },
+          {
+            "name": "个人中心",
+            "url": "#/template/user-info"
+          }
+        ]
+      },
+      {
+        "name": "扩展组件",
+        "icon": "layui-icon layui-icon-app",
+        "url": "javascript:;",
+        "subMenus": [
+          {
+            "name": "下拉菜单",
+            "url": "#/plugin/basic/dropdown"
+          },
+          {
+            "name": "消息通知",
+            "url": "#/plugin/basic/notice"
+          },
+          {
+            "name": "更多扩展",
+            "url": "#/plugin/more"
+          }
+        ]
+      }
+    ]
+  }
+]
