@@ -2,7 +2,7 @@
 
 layui.define(['table'], function (exports) {
     var setter = {
-        baseServer: 'http://api.tv678.com', // 接口地址，实际项目请换成http形式的地址
+        baseServer: 'http://api.xxx.com', // 接口地址，实际项目请换成http形式的地址
         pageTabs: false,   // 是否开启多标签
         cacheTab: true,  // 是否记忆Tab
         defaultTheme: '',  // 默认主题
@@ -12,7 +12,7 @@ layui.define(['table'], function (exports) {
         viewSuffix: '.html',  // 视图后缀
         reqPutToPost: true,  // req请求put方法变成post
         apiNoCache: true,  // ajax请求json数据不带版本号
-        tableName: '软文通-spa',  // 存储表名
+        tableName: 'table-spa',  // 存储表名
         /* 获取缓存的token */
         getToken: function () {
             var cache = layui.data(setter.tableName);
